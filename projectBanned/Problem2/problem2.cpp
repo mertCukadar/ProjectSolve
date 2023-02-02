@@ -4,44 +4,29 @@
 using namespace std;
 
 int main(){
-    vector<int> initial_num{1,2};
-    
+    vector<int> initial_num{1,1};
 
-    // let us create a vector named as fibonacci:
     vector<int> fibonacci;
 
+    int next_num = initial_num[0] + initial_num[1];
 
-    for (int i=1 ; i < 1000 ; i++){
-        int add_num = initial_num[i] + initial_num[i -1];
+    while (next_num <= 4000000) {
+        fibonacci.push_back(next_num);
 
-        initial_num.push_back(add_num);
+        initial_num[0] = initial_num[1];
+        initial_num[1] = next_num;
 
-        cout << "Fibonacci Series" << initial_num[i] + ",";
-
-    }
-
-
-    fibonacci = initial_num;
-    vector<int> evens;
-    for (int i=0; i <= initial_num.size(); i++){
-        if (initial_num[i] % 2 == 0) {
-            evens.push_back(initial_num[i]);
-        }
+        next_num = initial_num[0] + initial_num[1];
     }
 
     int sum_evens = 0;
-    int *point_evens;
-
-    point_evens = &sum_evens;
-
-
-    for (int i = 0; i == evens.size(); i++){
-        point_evens += evens[i];
+    for (int i = 0; i < fibonacci.size(); i++){
+        if (fibonacci[i] % 2 == 0) {
+            sum_evens += fibonacci[i];
+        }
     }
 
-    cout << "sum of even number is: " << sum_evens << "..";
+    cout << "sum of even numbers: " << sum_evens << endl;
 
-return 0;
-
+    return 0;
 }
-
